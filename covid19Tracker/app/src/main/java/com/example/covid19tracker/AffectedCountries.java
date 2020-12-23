@@ -44,6 +44,7 @@ public class AffectedCountries extends AppCompatActivity {
     public static List<countries> countriesList = new ArrayList<>();
     countries countries;
     myCustom myCustom;
+    int checkedItem = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,9 +76,10 @@ public class AffectedCountries extends AppCompatActivity {
                 final String listItems[] = new String[]{"cases", "todayCases", "deaths", "todayDeaths", "recovered", "active", "critical"};
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(AffectedCountries.this);
                 mBuilder.setTitle("Sort the countries by:");
-                mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
+                mBuilder.setSingleChoiceItems(listItems, checkedItem, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        checkedItem = i;
                         getSort(listItems[i]);
                         dialogInterface.dismiss();
                     }
@@ -85,8 +87,8 @@ public class AffectedCountries extends AppCompatActivity {
                 mBuilder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
+                        dialogInterface.dismiss();
+                }
                 });
                 AlertDialog mDialog = mBuilder.create();
                 mDialog.show();

@@ -42,6 +42,7 @@ public class AffectedContinents extends AppCompatActivity {
     continents continents;
     myCustom2 myCustom2;
     ImageView sort;
+    int checkedItem = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,9 +74,10 @@ public class AffectedContinents extends AppCompatActivity {
                 final String listItems[] = new String[]{"cases", "todayCases", "deaths", "todayDeaths", "recovered", "active", "critical"};
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(AffectedContinents.this);
                 mBuilder.setTitle("Sort the continents by:");
-                mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
+                mBuilder.setSingleChoiceItems(listItems, checkedItem, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        checkedItem = i;
                         getSort(listItems[i]);
                         dialogInterface.dismiss();
                     }
